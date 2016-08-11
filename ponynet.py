@@ -1,4 +1,6 @@
+import matplotlib.pyplot as plt
 import tensorflow as tf
+import numpy as np
 
 
 def ponyfy(I, r):
@@ -12,7 +14,19 @@ def ponyfy(I, r):
     return tf.reshape(X, (bsize, a*r, b*r, 1))
 
 
-def ponynet(X, r, batch_size):
-    Xc = tf.split(3, 3, X)
-    X = tf.concat([ponyfy(x, r) for x in Xc])
+def ponynet(X, r, color=False):
+    if color:
+        Xc = tf.split(3, 3, X)
+        X = tf.concat([ponyfy(x, r) for x in Xc])
+    else:
+        X = ponyfy(X, r)
     return X
+
+if __name__ == "__main__":
+    with tf.Session() as sess:
+        x = np.arange(2*16*16).reshape(2, 8, 8, 4)
+        X = tf.Variable("float32", x, name="X")
+        Y = ponynet(X, 2)
+        y = Y.eval()
+    plt.imshow(y[0, :, :, 0], interpolation="none")
+    plt.show()
