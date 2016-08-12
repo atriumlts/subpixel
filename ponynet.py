@@ -17,7 +17,7 @@ def ponyfy(I, r):
 def ponynet(X, r, color=False):
     if color:
         Xc = tf.split(3, 3, X)
-        X = tf.concat([ponyfy(x, r) for x in Xc])
+        X = tf.concat(3, [ponyfy(x, r) for x in Xc])
     else:
         X = ponyfy(X, r)
     return X
@@ -28,5 +28,11 @@ if __name__ == "__main__":
         X = tf.placeholder("float32", shape=(2, 8, 8, 4), name="X")# tf.Variable(x, name="X")
         Y = ponynet(X, 2)
         y = sess.run(Y, feed_dict={X: x})
+
+        x2 = np.arange(2*3*16*16).reshape(2, 8, 8, 4*3)
+        X2 = tf.placeholder("float32", shape=(2, 8, 8, 4*3), name="X")# tf.Variable(x, name="X")
+        Y2 = ponynet(X2, 2, color=True)
+        y2 = sess.run(Y2, feed_dict={X2: x2})
+        print y2.shape
     plt.imshow(y[0, :, :, 0], interpolation="none")
     plt.show()
