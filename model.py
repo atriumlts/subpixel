@@ -61,6 +61,7 @@ class DCGAN(object):
 	
         self.inputs = tf.placeholder(tf.float32, [self.batch_size, self.input_size, self.input_size, 3],
                                     name='real_images')
+	self.up_inputs = tf.image.resize_images(self.inputs, self.image_shape[0], self.image_shape[1], tf.image.ResizeMethod.NEAREST_NEIGHBOR)
         self.images = tf.placeholder(tf.float32, [self.batch_size] + self.image_shape,
                                     name='real_images')
         self.sample_images= tf.placeholder(tf.float32, [self.sample_size] + self.image_shape,
@@ -129,11 +130,13 @@ class DCGAN(object):
                         time.time() - start_time, errG))
 
                 if np.mod(counter, 100) == 1:
-                    samples, g_loss = self.sess.run(
-                        [self.G, self.g_loss],
+                    samples, g_loss, up_inputs = self.sess.run(
+                        [self.G, self.g_loss, self.up_inputs],
                         feed_dict={self.inputs: sample_input_images, self.images: sample_images}
                     )
                     save_images(samples, [8, 8],
+                                './samples/train_%s_%s.png' % (epoch, idx))
+                    save_images(up_inputs, [8, 8],
                                 './samples/train_%s_%s.png' % (epoch, idx))
                     print("[Sample] g_loss: %.8f" % (g_loss))
 
