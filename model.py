@@ -5,7 +5,7 @@ from glob import glob
 import tensorflow as tf
 from six.moves import xrange
 from scipy.misc import imresize
-from ponynet import ponynet 
+from ponynet import ponynet
 
 from ops import *
 from utils import *
@@ -58,7 +58,7 @@ class DCGAN(object):
         self.build_model()
 
     def build_model(self):
-	
+
         self.inputs = tf.placeholder(tf.float32, [self.batch_size, self.input_size, self.input_size, 3],
                                     name='real_images')
 	self.up_inputs = tf.image.resize_images(self.inputs, self.image_shape[0], self.image_shape[1], tf.image.ResizeMethod.NEAREST_NEIGHBOR)
@@ -115,7 +115,7 @@ class DCGAN(object):
             for idx in xrange(0, batch_idxs):
                 batch_files = data[idx*config.batch_size:(idx+1)*config.batch_size]
                 batch = [get_image(batch_file, self.image_size, is_crop=self.is_crop) for batch_file in batch_files]
-                input_batch = [doresize(xx, [self.input_size,]*2) for xx in batch] 
+                input_batch = [doresize(xx, [self.input_size,]*2) for xx in batch]
                 batch_images = np.array(batch).astype(np.float32)
                 batch_inputs = np.array(input_batch).astype(np.float32)
 
@@ -137,7 +137,7 @@ class DCGAN(object):
                     save_images(samples, [8, 8],
                                 './samples/train_%s_%s.png' % (epoch, idx))
                     save_images(up_inputs, [8, 8],
-                                './samples/train_%s_%s.png' % (epoch, idx))
+                                './samples/inputs_%s_%s.png' % (epoch, idx))
                     print("[Sample] g_loss: %.8f" % (g_loss))
 
                 if np.mod(counter, 500) == 2:
