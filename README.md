@@ -66,7 +66,7 @@ in between pixels and having to do extra computation, they
 calculate more convolutions in lower resolution and resize the resulting map
 into an upscaled image. This way, no meaningless zeros are necessary.
 Checkout the figure below from their paper. Follow the colors to have an intuition about how they do the
-image resizing.
+image resizing. Check [this paper](https://arxiv.org/abs/1609.07009) for further understanding.
 
 ![](./images/spcnn_diagram.png)
 [source](https://arxiv.org/abs/1609.05158)
