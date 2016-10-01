@@ -24,7 +24,7 @@ operation is highly parallelizable, since the kernel is the same throughout the
 image. People used to refer to convolutions as locally connected layers with
 shared parameters. Checkout the figure bellow by Dumoulin and Visin [3]:
 
-![img]
+![./images/no_padding_no_strides.gif]
 
 Note though that convolutional neural networks can be defined with `strides`
 or we can follow the convolution with `maxpooling` to
@@ -34,7 +34,7 @@ operation, where zeros a filled in between non-zeros pixels followed by a
 convolution with the kernel matrix. See representation copied from Dumoulin and
 Visin again:
 
-![img]
+![./images/padding_strides_transposed.gif]
 
 For classification purposes, all that we need is the feedforwd pass of
 convolutional neural networks to extract features at different scales. But for
@@ -49,7 +49,7 @@ zero values to the upscale the image. Zero values that have to be latter filled
 in with meanigful values. Maybe even worse, these zero values have no gradient
 information that can be backpropagated through. 
 
-To cope with that problem, Shi et. al [1] proposed what I argue to be one the
+To cope with that problem, Shi et. al [1] proposed what we argue to be one the
 most useful recent convnet tricks. Note: this is biased because my rearch is
 mostly on generative models. They
 proposed a subpixel convolutional neural network layer for upscaling. This
@@ -62,7 +62,7 @@ Checkout the figure bellow
 from their paper. Follow the colors to have an intuition about how they do the
 image resizing.
 
-![img]
+![./images/sbcnn_diagram.png]
 
 Next we will discuss our implementation of this method and later what we
 foresse to be the implications of it everywhere where convolutional neural
@@ -72,7 +72,7 @@ networks upscaling was necessary.
 
 Following Shi et. al. the equation for implementing the phase shift for CNNs is:
 
-![img]
+![./images/ps_eq.png]
 
 In numpy, we can write this as
 
@@ -130,12 +130,14 @@ perhaps one of the most fun company names in our field. The reminder of this
 library is an implementation of a subpixel CNN using the proposed `ponynet`
 implementation for super resolotion of celeb-A image faces. The code was
 written on top of
-[carpedm20/DCGAN-tensorflow](https://github.com/carpedm20/DCGAN-tensorflow).
+[carpedm20/DCGAN-tensorflow](https://github.com/carpedm20/DCGAN-tensorflow), as so, to use follow the same instructions:
+
+
 
 
 ## Ponynets future are bright
 
-Here are I want to forecast that subpixel CNNs are going to ultimately replace
+Here are we want to forecast that subpixel CNNs are going to ultimately replace
 transposed convolutions (deconv, conv grad, or whatever you call it) in
 feedforward neural networks. The gradient is much more meanigful and resizing
 operations are virtually computationally free. Our implementation is a highly
@@ -144,13 +146,17 @@ with Keras so that an even larger community can use it. Plus, a cuda backend
 level implementation would be even more appreciated.
 
 But for now we want to recommend the community to proof our hypothesis and
-rewrite EVERYTHING deconv with this code. By everything I mean:
+rewrite EVERYTHING deconv with this code. By everything we mean:
 
-* Conv-deconv autoencoders
-* Style transfer networks
-* Deep Convolutional Autoencoders (DCGAN)
-* Segmenation Networks (SegNets)
-* whatever you were upscaling with zero padding
+* Conv-deconv autoencoders  
+    TBF, superresolution is already doing something like that.
+* Style transfer networks  
+    This didn't work in a lazy plug and play. We have to look more carfully
+* Deep Convolutional Autoencoders (DCGAN)  
+    We started doing this, but as predicted we have to change hyperparameters. The network power is totally different from deconv layers.
+* Segmenation Networks (SegNets)  
+    ULTRA LOW hanging fruit. We want to see results here in a week! Common guys you can do this.
+* whatever you were upscaling with zero padding  
 
 Join us in the revolution to get rid of meaningless zeros in feedfoward
 convnets, give suggestions here, use the code.
