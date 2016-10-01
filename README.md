@@ -1,7 +1,7 @@
-Ponynet: A subpixel CNN reimplementation with Tensorflow
+SubPixelCNN: A subpixel convolutional neural networks reimplementation with Tensorflow
 ====================
 
-Input / Output after 6 epochs:  
+Left: input images / Right: output images with 4x superresolution after 6 epochs:  
 
 <img src="./images/input_detail.png" width=400> <img src="./images/superres_epoch6_detail.png" width=400>
 
@@ -83,7 +83,7 @@ Following Shi et. al. the equation for implementing the phase shift for CNNs is:
 In numpy, we can write this as
 
 ```python
-def pony(I, r):
+def PS(I, r):
   assert len(I.shape) == 3
   assert r>0
   r = int(r)
@@ -109,7 +109,7 @@ convolutional map and builds up neighborhood of r x r pixels. And we can do the
 same with a little lines of Tensorflow code as :
 
 ```python
-def _ponyfy(I, r):
+def _phase_shift(I, r):
     # Helper function with main phase shift operation
     bsize, a, b, c = I.get_shape().as_list()
     X = tf.reshape(I, (bsize, a, b, r, r))
@@ -121,19 +121,18 @@ def _ponyfy(I, r):
     bsize, a*r, b*r
     return tf.reshape(X, (bsize, a*r, b*r, 1))
 
-def ponynet(X, r, color=False):
+def PS(X, r, color=False):
   # Main OP that you can arbitrarily use in you tensorflow code
   if color:
     Xc = tf.split(3, 3, X)
-    X = tf.concat(3, [_ponyfy(x, r) for x in Xc])
+    X = tf.concat(3, [_phase_shift(x, r) for x in Xc])
   else:
-    X = ponyfy(X, r)
+    X = _phase_shift(X, r)
   return X
 ```
 
-Note that we named our function `ponynet` as a homage to remember what was
-perhaps one of the most fun company names in our field. The reminder of this
-library is an implementation of a subpixel CNN using the proposed `ponynet`
+The reminder of this
+library is an implementation of a subpixel CNN using the proposed `PS`
 implementation for super resolotion of celeb-A image faces. The code was
 written on top of
 [carpedm20/DCGAN-tensorflow](https://github.com/carpedm20/DCGAN-tensorflow), as so, to use follow the same instructions:
@@ -144,7 +143,7 @@ $ python main.py --dataset celebA --is_train True --is_crop True
 
 ```
 
-## Ponynet future is bright
+## Sub-pixel CNN future is bright
 
 Here are we want to forecast that subpixel CNNs are going to ultimately replace
 transposed convolutions (deconv, conv grad, or whatever you call it) in
