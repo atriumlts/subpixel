@@ -24,7 +24,7 @@ operation is highly parallelizable, since the kernel is the same throughout the
 image. People used to refer to convolutions as locally connected layers with
 shared parameters. Checkout the figure bellow by Dumoulin and Visin [3]:
 
-![./images/no_padding_no_strides.gif]
+![](./images/no_padding_no_strides.gif)
 
 Note though that convolutional neural networks can be defined with `strides`
 or we can follow the convolution with `maxpooling` to
@@ -34,7 +34,7 @@ operation, where zeros a filled in between non-zeros pixels followed by a
 convolution with the kernel matrix. See representation copied from Dumoulin and
 Visin again:
 
-![./images/padding_strides_transposed.gif]
+![](./images/padding_strides_transposed.gif)
 
 For classification purposes, all that we need is the feedforwd pass of
 convolutional neural networks to extract features at different scales. But for
@@ -62,7 +62,7 @@ Checkout the figure bellow
 from their paper. Follow the colors to have an intuition about how they do the
 image resizing.
 
-![./images/sbcnn_diagram.png]
+![](./images/sbcnn_diagram.png)
 
 Next we will discuss our implementation of this method and later what we
 foresse to be the implications of it everywhere where convolutional neural
@@ -72,7 +72,7 @@ networks upscaling was necessary.
 
 Following Shi et. al. the equation for implementing the phase shift for CNNs is:
 
-![./images/ps_eq.png]
+![](./images/ps_eq.png)
 
 In numpy, we can write this as
 
@@ -119,7 +119,7 @@ def ponynet(X, r, color=False):
   # Main OP that you can arbitrarily use in you tensorflow code
   if color:
     Xc = tf.split(3, 3, X)
-    X = tf.concat(3, [ponyfy(x, r) for x in Xc])
+    X = tf.concat(3, [_ponyfy(x, r) for x in Xc])
   else:
     X = ponyfy(X, r)
   return X
