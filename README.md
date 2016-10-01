@@ -62,7 +62,7 @@ Checkout the figure bellow
 from their paper. Follow the colors to have an intuition about how they do the
 image resizing.
 
-![](./images/sbcnn_diagram.png)
+![](./images/spcnn_diagram.png)
 
 Next we will discuss our implementation of this method and later what we
 foresse to be the implications of it everywhere where convolutional neural
