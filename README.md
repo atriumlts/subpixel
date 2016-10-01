@@ -1,6 +1,11 @@
 Ponynet: A subpixel CNN reimplementation with Tensorflow and Theano
 ====================
 
+Input / Output after 6 epochs / Output after a few batches:
+![](./images/input_detail.png) ![](./images/superres_epoch6_detail.png) ![](./images/superres_epoch0_detail.png)
+
+
+
 In this years (2016) CVPR Shi et. al. from Twitter UX (previously Magic Pony)
 published a paper called Real-Time Single Image and Video Super-Resolution
 Using an Efficient Sub-Pixel Convolutional Neural Network [1]. Here we propose
@@ -137,7 +142,6 @@ $ python download.py celebA  # this won't work though, you will have to download
 $ python main.py --dataset celebA --is_train True --is_crop True
 
 ```
-
 
 ## Ponynet future is bright
 
