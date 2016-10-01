@@ -143,7 +143,7 @@ $ python main.py --dataset celebA --is_train True --is_crop True
 
 ```
 
-## Sub-pixel CNN future is bright
+## Subpixel CNN future is bright
 
 Here are we want to forecast that subpixel CNNs are going to ultimately replace
 transposed convolutions (deconv, conv grad, or whatever you call it) in
