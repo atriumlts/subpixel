@@ -107,7 +107,7 @@ its equivalent gradient. But after starting for a few minutes in the image
 depiction of the resulting operation we noticed how to write that using just
 regular `reshape`, `split` and `concatenate` operations. To understand that
 note that phase shift simply goes through different channels of the output
-convolutional map and builds up neighborhood of r x r pixels. And we can do the
+convolutional map and builds up neighborhoods of `r x r` pixels. And we can do the
 same with a few lines of Tensorflow code as:
 
 ```python
@@ -135,7 +135,7 @@ def PS(X, r, color=False):
 
 The reminder of this library is an implementation of a subpixel CNN using the proposed `PS`
 implementation for super resolotion of celeb-A image faces. The code was written on top of
-[carpedm20/DCGAN-tensorflow](https://github.com/carpedm20/DCGAN-tensorflow), as so, to use follow the same instructions:
+[carpedm20/DCGAN-tensorflow](https://github.com/carpedm20/DCGAN-tensorflow), as so, follow the same instructions to use it:
 
 ```
 $ python download.py celebA  # this won't work though, you will have to download the dataset by hand somewhere
@@ -144,24 +144,24 @@ $ python main.py --dataset celebA --is_train True --is_crop True
 
 ## Subpixel CNN future is bright
 
-Here are we want to forecast that subpixel CNNs are going to ultimately replace
+Here we want to forecast that subpixel CNNs are going to ultimately replace
 transposed convolutions (deconv, conv grad, or whatever you call it) in
-feedforward neural networks. The gradient is much more meanigful and resizing
-operations are virtually free computationally. Our implementation is a highly
+feedforward neural networks. Phase shift's gradient is much more meanigful and resizing
+operations are virtually free computationally. Our implementation is a high
 level one, using default Tensorflow OPs. But next we will rewrite everything
 with Keras so that an even larger community can use it. Plus, a cuda backend
 level implementation would be even more appreciated.
 
-But for now we want to encourage the community to experiment with where else deconv can be replaced by subpixel operatinos. By everything we mean:
+But for now we want to encourage the community to experiment replacing deconv layers with subpixel operatinos everywhere. By everywhere we mean:
 
-* Conv-deconv autoencoders
-    Similar to super-resolution, include subpixel in other autoencoder implementations with deconv layers
-* Style transfer networks
-    This didn't work in a lazy plug and play. We have to look more carefully
-* Deep Convolutional Autoencoders (DCGAN)
+* Conv-deconv autoencoders  
+    Similar to super-resolution, include subpixel in other autoencoder implementations, replace deconv layers
+* Style transfer networks  
+    This didn't work in a lazy plug and play in our experiments. We have to look more carefully
+* Deep Convolutional Autoencoders (DCGAN)  
     We started doing this, but as predicted we have to change hyperparameters. The network power is totally different from deconv layers.
-* Segmenation Networks (SegNets)
-    ULTRA LOW hanging fruit!
+* Segmenation Networks (SegNets)    
+    ULTRA LOW hanging fruit! This one will be the easiest. Free paper, you're welcome!
 * wherever upscaling is done with zero padding
 
 Join us in the revolution to get rid of meaningless zeros in feedfoward
