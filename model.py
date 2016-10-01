@@ -5,7 +5,7 @@ from glob import glob
 import tensorflow as tf
 from six.moves import xrange
 from scipy.misc import imresize
-from ponynet import ponynet
+from subpixel import PS
 
 from ops import *
 from utils import *
@@ -152,7 +152,7 @@ class DCGAN(object):
 	h1 = lrelu(self.h1)
 
 	h2, self.h2_w, self.h2_b = deconv2d(h1, [self.batch_size, 32, 32, 3*16], d_h=1, d_w=1, name='g_h2', with_w=True)
-	h2 = ponynet(h2, 4, color=True)
+	h2 = PS(h2, 4, color=True)
 
 	return tf.nn.tanh(h2)
 
