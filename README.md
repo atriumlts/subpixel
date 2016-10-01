@@ -132,10 +132,14 @@ implementation for super resolotion of celeb-A image faces. The code was
 written on top of
 [carpedm20/DCGAN-tensorflow](https://github.com/carpedm20/DCGAN-tensorflow), as so, to use follow the same instructions:
 
+```
+$ python download.py celebA  # this won't work though, you will have to download the dataset by hand somewhere
+$ python main.py --dataset celebA --is_train True --is_crop True
+
+```
 
 
-
-## Ponynets future are bright
+## Ponynet future is bright
 
 Here are we want to forecast that subpixel CNNs are going to ultimately replace
 transposed convolutions (deconv, conv grad, or whatever you call it) in
@@ -160,3 +164,9 @@ rewrite EVERYTHING deconv with this code. By everything we mean:
 
 Join us in the revolution to get rid of meaningless zeros in feedfoward
 convnets, give suggestions here, use the code.
+
+## References
+
+[1] [Real-Time Single Image and Video Super-Resolution Using an Efficient Sub-Pixel Convolutional Neural Network](https://arxiv.org/abs/1609.05158). By Shi et. al.
+[2] [Visualizing and Understanding Convolutional Networks](https://arxiv.org/abs/1311.2901). By Zeiler and Fergus
+[3] []
