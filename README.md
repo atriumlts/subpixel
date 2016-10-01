@@ -7,7 +7,7 @@ Left: input images / Right: output images with 4x super-resolution after 6 epoch
 
 See more examples inside the [images](./images/) folder.
 
-In CVPR 2016 Shi et. al. from Twitter UX (previously Magic Pony)
+In CVPR 2016 Shi et. al. from Twitter VX (previously Magic Pony)
 published a paper called Real-Time Single Image and Video Super-Resolution
 Using an Efficient Sub-Pixel Convolutional Neural Network [1]. Here we propose
 a reimplementation of their method and discuss future applications of the
