@@ -1,10 +1,9 @@
 Ponynet: A subpixel CNN reimplementation with Tensorflow and Theano
 ====================
 
-Input / Output after 6 epochs / Output after a few batches:
+Input / Output after 6 epochs / Output after a few batches:  
+
 ![](./images/input_detail.png) ![](./images/superres_epoch6_detail.png) ![](./images/superres_epoch0_detail.png)
-
-
 
 In this years (2016) CVPR Shi et. al. from Twitter UX (previously Magic Pony)
 published a paper called Real-Time Single Image and Video Super-Resolution
@@ -171,6 +170,6 @@ convnets, give suggestions here, use the code.
 
 ## References
 
-[1] [Real-Time Single Image and Video Super-Resolution Using an Efficient Sub-Pixel Convolutional Neural Network](https://arxiv.org/abs/1609.05158). By Shi et. al.
-[2] [Visualizing and Understanding Convolutional Networks](https://arxiv.org/abs/1311.2901). By Zeiler and Fergus
-[3] []
+[1] [Real-Time Single Image and Video Super-Resolution Using an Efficient Sub-Pixel Convolutional Neural Network](https://arxiv.org/abs/1609.05158). By Shi et. al.   
+[2] [Visualizing and Understanding Convolutional Networks](https://arxiv.org/abs/1311.2901). By Zeiler and Fergus.   
+[3] [A guide to convolution arithmetic for deep learning](https://arxiv.org/abs/1603.07285). By Dumoulin and Visin.
