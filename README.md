@@ -1,4 +1,4 @@
-subpixel: A subpixel convolutional neural networks reimplementation with Tensorflow
+subpixel: A subpixel convolutional neural networks implementation with Tensorflow
 ====================
 
 Left: input images / Right: output images with 4x superresolution after 6 epochs:  
