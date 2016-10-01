@@ -31,6 +31,7 @@ image. People used to refer to convolutions as locally connected layers with
 shared parameters. Checkout the figure bellow by Dumoulin and Visin [3]:
 
 ![](./images/no_padding_no_strides.gif)
+[credit](https://github.com/vdumoulin/conv_arithmetic)
 
 Note though that convolutional neural networks can be defined with `strides`
 or we can follow the convolution with `maxpooling` to
@@ -41,6 +42,7 @@ convolution with the kernel matrix. See representation copied from Dumoulin and
 Visin again:
 
 ![](./images/padding_strides_transposed.gif)
+[credit](https://github.com/vdumoulin/conv_arithmetic)
 
 For classification purposes, all that we need is the feedforwd pass of
 convolutional neural networks to extract features at different scales. But for
@@ -69,6 +71,7 @@ from their paper. Follow the colors to have an intuition about how they do the
 image resizing.
 
 ![](./images/spcnn_diagram.png)
+[credit](https://arxiv.org/abs/1609.05158)
 
 Next we will discuss our implementation of this method and later what we
 foresse to be the implications of it everywhere where convolutional neural
@@ -79,6 +82,7 @@ networks upscaling was necessary.
 Following Shi et. al. the equation for implementing the phase shift for CNNs is:
 
 ![](./images/ps_eq.png)
+[credit](https://arxiv.org/abs/1609.05158)
 
 In numpy, we can write this as
 
