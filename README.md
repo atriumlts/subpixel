@@ -103,7 +103,7 @@ def PS(I, r):
 ```
 
 To implement this in Tensorflow we would have to create a custom operator and
-its equivalent gradient. But after starting for a few minutes in the image
+its equivalent gradient. But after staring for a few minutes in the image
 depiction of the resulting operation we noticed how to write that using just
 regular `reshape`, `split` and `concatenate` operations. To understand that
 note that phase shift simply goes through different channels of the output
