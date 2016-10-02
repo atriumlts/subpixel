@@ -18,7 +18,7 @@ But first let us discuss some background.
 ## Convolutions, transposed convolutions and subpixel convolutions
 
 Convolutional neural networks (CNN) are now standard neural network layers for
-computer vision. Transposed convolutions (sometimes refered as deconvolution)
+computer vision. Transposed convolutions (sometimes referred to as deconvolution)
 are the GRADIENTS of a convolutional layer. Transposed convolutions were, as
 far as we know first used by Zeiler and Fergus [2] for visualization purposes
 while improving their AlexNet model.
@@ -46,7 +46,7 @@ Visin again:
 
 For classification purposes, all that we need is the feedforward pass of a
 convolutional neural network to extract features at different scales. But for
-applications such as image superresolution and autoencoders, both downsampling
+applications such as image super resolution and autoencoders, both downsampling
 and upsampling operations are necessary in a feedforward pass. The community
 took inspiration on how the gradients are implemented in CNNs and applied them as
 a feedforward layer instead.
@@ -54,7 +54,7 @@ a feedforward layer instead.
 But as one may have observed the upsampling operation as implemented above
 with strided convolution gradients adds
 zero values to the upscale the image, that have to be later filled
-in with meanigful values. Maybe even worse, these zero values have no gradient
+in with meaningful values. Maybe even worse, these zero values have no gradient
 information that can be backpropagated through.
 
 To cope with that problem, Shi et. al [1] proposed what we argue to be one the
@@ -134,7 +134,7 @@ def PS(X, r, color=False):
 ```
 
 The reminder of this library is an implementation of a subpixel CNN using the proposed `PS`
-implementation for super resolotion of celeb-A image faces. The code was written on top of
+implementation for super resolution of celeb-A image faces. The code was written on top of
 [carpedm20/DCGAN-tensorflow](https://github.com/carpedm20/DCGAN-tensorflow), as so, follow the same instructions to use it:
 
 ```
@@ -146,7 +146,7 @@ $ python main.py --dataset celebA --is_train True --is_crop True
 
 Here we want to forecast that subpixel CNNs are going to ultimately replace
 transposed convolutions (deconv, conv grad, or whatever you call it) in
-feedforward neural networks. Phase shift's gradient is much more meanigful and resizing
+feedforward neural networks. Phase shift's gradient is much more meaningful and resizing
 operations are virtually free computationally. Our implementation is a high
 level one, using default Tensorflow OPs. But next we will rewrite everything
 with Keras so that an even larger community can use it. Plus, a cuda backend
@@ -160,7 +160,7 @@ But for now we want to encourage the community to experiment replacing deconv la
     This didn't work in a lazy plug and play in our experiments. We have to look more carefully
 * Deep Convolutional Autoencoders (DCGAN)  
     We started doing this, but as predicted we have to change hyperparameters. The network power is totally different from deconv layers.
-* Segmenation Networks (SegNets)    
+* Segmentation Networks (SegNets)    
     ULTRA LOW hanging fruit! This one will be the easiest. Free paper, you're welcome!
 * wherever upscaling is done with zero padding
 
