@@ -61,7 +61,7 @@ class DCGAN(object):
 
         self.inputs = tf.placeholder(tf.float32, [self.batch_size, self.input_size, self.input_size, 3],
                                     name='real_images')
-    self.up_inputs = tf.image.resize_images(self.inputs, self.image_shape[0], self.image_shape[1], tf.image.ResizeMethod.NEAREST_NEIGHBOR)
+        self.up_inputs = tf.image.resize_images(self.inputs, self.image_shape[0], self.image_shape[1], tf.image.ResizeMethod.NEAREST_NEIGHBOR)
         self.images = tf.placeholder(tf.float32, [self.batch_size] + self.image_shape,
                                     name='real_images')
         self.sample_images= tf.placeholder(tf.float32, [self.sample_size] + self.image_shape,
