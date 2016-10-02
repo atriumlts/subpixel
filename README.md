@@ -174,4 +174,4 @@ convnets, give suggestions here, try our code!
 [3] [A guide to convolution arithmetic for deep learning](https://arxiv.org/abs/1603.07285). By Dumoulin and Visin.
 
 ## Further reading
-Alex J. Champandard made a really interesting analysis of this topic [here](https://twitter.com/alexjc/status/782499923753304064). 
+Alex J. Champandard made a really interesting analysis of this topic in this [thread](https://twitter.com/alexjc/status/782499923753304064). 
