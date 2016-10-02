@@ -38,7 +38,7 @@ or we can follow the convolution with `maxpooling` to
 downsample the input image. The equivalent `backward` operation of a
 convolution with strides, in other words its gradient, is an upsampling
 operation, where zeros a filled in between non-zeros pixels followed by a
-convolution with the kernel matrix. See representation copied from Dumoulin and
+convolution with the kernel rotated 180 degrees. See representation copied from Dumoulin and
 Visin again:
 
 ![](./images/padding_strides_transposed.gif)
@@ -48,7 +48,7 @@ For classification purposes, all that we need is the feedforward pass of a
 convolutional neural network to extract features at different scales. But for
 applications such as image superresolution and autoencoders, both downsampling
 and upsampling operations are necessary in a feedforward pass. The community
-took inspiration on how the gradients are implemented in CNNs are used them as
+took inspiration on how the gradients are implemented in CNNs and applied them as
 a feedforward layer instead.
 
 But as one may have observed the upsampling operation as implemented above
