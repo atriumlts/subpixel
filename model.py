@@ -38,7 +38,7 @@ class DCGAN(object):
         self.is_crop = is_crop
         self.batch_size = batch_size
         self.image_size = image_size
-	self.input_size = 32
+        self.input_size = 32
         self.sample_size = sample_size
         self.image_shape = image_shape
 
@@ -61,7 +61,7 @@ class DCGAN(object):
 
         self.inputs = tf.placeholder(tf.float32, [self.batch_size, self.input_size, self.input_size, 3],
                                     name='real_images')
-	self.up_inputs = tf.image.resize_images(self.inputs, self.image_shape[0], self.image_shape[1], tf.image.ResizeMethod.NEAREST_NEIGHBOR)
+    self.up_inputs = tf.image.resize_images(self.inputs, self.image_shape[0], self.image_shape[1], tf.image.ResizeMethod.NEAREST_NEIGHBOR)
         self.images = tf.placeholder(tf.float32, [self.batch_size] + self.image_shape,
                                     name='real_images')
         self.sample_images= tf.placeholder(tf.float32, [self.sample_size] + self.image_shape,
@@ -96,7 +96,7 @@ class DCGAN(object):
 
         sample_files = data[0:self.sample_size]
         sample = [get_image(sample_file, self.image_size, is_crop=self.is_crop) for sample_file in sample_files]
-	sample_inputs = [doresize(xx, [self.input_size,]*2) for xx in sample]
+        sample_inputs = [doresize(xx, [self.input_size,]*2) for xx in sample]
         sample_images = np.array(sample).astype(np.float32)
         sample_input_images = np.array(sample_inputs).astype(np.float32)
 
@@ -145,16 +145,16 @@ class DCGAN(object):
 
     def generator(self, z):
         # project `z` and reshape
-	self.h0, self.h0_w, self.h0_b = deconv2d(z, [self.batch_size, 32, 32, self.gf_dim], k_h=1, k_w=1, d_h=1, d_w=1, name='g_h0', with_w=True)
-	h0 = lrelu(self.h0)
+        self.h0, self.h0_w, self.h0_b = deconv2d(z, [self.batch_size, 32, 32, self.gf_dim], k_h=1, k_w=1, d_h=1, d_w=1, name='g_h0', with_w=True)
+        h0 = lrelu(self.h0)
 
-	self.h1, self.h1_w, self.h1_b = deconv2d(h0, [self.batch_size, 32, 32, self.gf_dim], name='g_h1', d_h=1, d_w=1, with_w=True)
-	h1 = lrelu(self.h1)
+        self.h1, self.h1_w, self.h1_b = deconv2d(h0, [self.batch_size, 32, 32, self.gf_dim], name='g_h1', d_h=1, d_w=1, with_w=True)
+        h1 = lrelu(self.h1)
 
-	h2, self.h2_w, self.h2_b = deconv2d(h1, [self.batch_size, 32, 32, 3*16], d_h=1, d_w=1, name='g_h2', with_w=True)
-	h2 = PS(h2, 4, color=True)
+        h2, self.h2_w, self.h2_b = deconv2d(h1, [self.batch_size, 32, 32, 3*16], d_h=1, d_w=1, name='g_h2', with_w=True)
+        h2 = PS(h2, 4, color=True)
 
-	return tf.nn.tanh(h2)
+        return tf.nn.tanh(h2)
 
     def save(self, checkpoint_dir, step):
         model_name = "DCGAN.model"
