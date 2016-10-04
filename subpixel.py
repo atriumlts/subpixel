@@ -5,6 +5,7 @@ import numpy as np
 
 def _phase_shift(I, r):
     bsize, a, b, c = I.get_shape().as_list()
+    bsize = tf.shape(I)[0] # Handling Dimension(None) type for undefined batch dim
     X = tf.reshape(I, (bsize, a, b, r, r))
     X = tf.transpose(X, (0, 1, 2, 4, 3))  # bsize, a, b, 1, 1
     X = tf.split(1, a, X)  # a, [bsize, b, r, r]
