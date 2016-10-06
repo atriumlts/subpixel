@@ -138,7 +138,7 @@ implementation for super resolution of celeb-A image faces. The code was written
 [carpedm20/DCGAN-tensorflow](https://github.com/carpedm20/DCGAN-tensorflow), as so, follow the same instructions to use it:
 
 ```
-$ python download.py celebA  # if this doesn't work, you will have to download the dataset by hand somewhere else
+$ python download.py --dataset celebA  # if this doesn't work, you will have to download the dataset by hand somewhere else
 $ python main.py --dataset celebA --is_train True --is_crop True
 ```
 
