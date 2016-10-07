@@ -105,6 +105,8 @@ class DCGAN(object):
         sample_images = np.array(sample).astype(np.float32)
         sample_input_images = np.array(sample_inputs).astype(np.float32)
 
+        save_images(sample_images, [8, 8], './samples/reference.png')
+
         counter = 1
         start_time = time.time()
 
