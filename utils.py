@@ -18,7 +18,8 @@ def get_image(image_path, image_size, is_crop=True):
     return transform(imread(image_path), image_size, is_crop)
 
 def save_images(images, size, image_path):
-    return imsave(inverse_transform(images), size, image_path)
+    num_im = size[0] * size[1]
+    return imsave(inverse_transform(images[:num_im]), size, image_path)
 
 def imread(path):
     return scipy.misc.imread(path).astype(np.float)

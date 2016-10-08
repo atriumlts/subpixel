@@ -17,7 +17,7 @@ def doresize(x, shape):
 
 class DCGAN(object):
     def __init__(self, sess, image_size=128, is_crop=True,
-                 batch_size=64, sample_size = 64, image_shape=[128, 128, 3],
+                 batch_size=64, image_shape=[128, 128, 3],
                  y_dim=None, z_dim=100, gf_dim=64, df_dim=64,
                  gfc_dim=1024, dfc_dim=1024, c_dim=3, dataset_name='default',
                  checkpoint_dir=None):
@@ -39,7 +39,7 @@ class DCGAN(object):
         self.batch_size = batch_size
         self.image_size = image_size
         self.input_size = 32
-        self.sample_size = sample_size
+        self.sample_size = batch_size
         self.image_shape = image_shape
 
         self.y_dim = y_dim
@@ -105,6 +105,7 @@ class DCGAN(object):
         sample_images = np.array(sample).astype(np.float32)
         sample_input_images = np.array(sample_inputs).astype(np.float32)
 
+        save_images(sample_input_images, [8, 8], './samples/inputs_small.png')
         save_images(sample_images, [8, 8], './samples/reference.png')
 
         counter = 1
