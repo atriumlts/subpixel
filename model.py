@@ -88,8 +88,8 @@ class DCGAN(object):
 
     def train(self, config):
         """Train DCGAN"""
-        data = glob(os.path.join("./data", config.dataset, "*.jpg"))
-        #np.random.shuffle(data)
+        # first setup validation data
+        data = sorted(glob(os.path.join("./data", config.dataset, "valid", "*.jpg")))
 
         g_optim = tf.train.AdamOptimizer(config.learning_rate, beta1=config.beta1) \
                           .minimize(self.g_loss, var_list=self.g_vars)
@@ -105,6 +105,8 @@ class DCGAN(object):
         sample_images = np.array(sample).astype(np.float32)
         sample_input_images = np.array(sample_inputs).astype(np.float32)
 
+        save_images(sample_images, [8, 8], './samples/reference.png')
+
         counter = 1
         start_time = time.time()
 
@@ -113,8 +115,11 @@ class DCGAN(object):
         else:
             print(" [!] Load failed...")
 
+        # we only save the validation inputs once
+        have_saved_inputs = False
+
         for epoch in xrange(config.epoch):
-            data = glob(os.path.join("./data", config.dataset, "*.jpg"))
+            data = sorted(glob(os.path.join("./data", config.dataset, "train", "*.jpg")))
             batch_idxs = min(len(data), config.train_size) // config.batch_size
 
             for idx in xrange(0, batch_idxs):
@@ -139,10 +144,11 @@ class DCGAN(object):
                         [self.G, self.g_loss, self.up_inputs],
                         feed_dict={self.inputs: sample_input_images, self.images: sample_images}
                     )
+                    if not have_saved_inputs:
+                        save_images(up_inputs, [8, 8], './samples/inputs.png')
+                        have_saved_inputs = True
                     save_images(samples, [8, 8],
-                                './samples/train_%s_%s.png' % (epoch, idx))
-                    save_images(up_inputs, [8, 8],
-                                './samples/inputs_%s_%s.png' % (epoch, idx))
+                                './samples/valid_%s_%s.png' % (epoch, idx))
                     print("[Sample] g_loss: %.8f" % (g_loss))
 
                 if np.mod(counter, 500) == 2:
