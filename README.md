@@ -167,6 +167,12 @@ But for now we want to encourage the community to experiment replacing deconv la
 Join us in the revolution to get rid of meaningless zeros in feedfoward
 convnets, give suggestions here, try our code!
 
+## Sample results
+The top row is the input, the middle row is the output, and the bottom row is the ground truth.  
+<img src="./images/more_examples.png" width=500>  
+by @dribnet 
+
+
 ## References
 
 [1] [Real-Time Single Image and Video Super-Resolution Using an Efficient Sub-Pixel Convolutional Neural Network](https://arxiv.org/abs/1609.05158). By Shi et. al.  
