@@ -164,8 +164,9 @@ class DCGAN(object):
         h1 = lrelu(self.h1)
 
         h2, self.h2_w, self.h2_b = deconv2d(h1, [self.batch_size, 32, 32, 3*16], d_h=1, d_w=1, name='g_h2', with_w=True)
-        h2 = PS(h2, 4, color=True)
-
+        #h2 = PS(h2, 4, color=True)
+        h2 = tf.depth_to_space(h2, 4)
+        
         return tf.nn.tanh(h2)
 
     def save(self, checkpoint_dir, step):
