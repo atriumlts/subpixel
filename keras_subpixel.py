@@ -15,7 +15,7 @@ class Subpixel(Conv2D):
                  r,
                  padding='valid',
                  data_format=None,
-                 strides=(1,1)
+                 strides=(1,1),
                  activation=None,
                  use_bias=True,
                  kernel_initializer='glorot_uniform',
@@ -29,7 +29,7 @@ class Subpixel(Conv2D):
         super(Subpixel, self).__init__(
             filters=r*r*filters,
             kernel_size=kernel_size,
-            strides=strides
+            strides=strides,
             padding=padding,
             data_format=data_format,
             activation=activation,
