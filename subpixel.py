@@ -18,7 +18,7 @@ def _phase_shift(I, r):
 def PS(X, r, color=False):
     if color:
         Xc = tf.split(X, 3, 3)
-        X = tf.concat(3, [_phase_shift(x, r) for x in Xc])
+        X = tf.concat([_phase_shift(x, r) for x in Xc], 3)
     else:
         X = _phase_shift(X, r)
     return X
