@@ -34,6 +34,6 @@ if __name__ == "__main__":
         X2 = tf.placeholder("float32", shape=(2, 8, 8, 4*3), name="X")# tf.Variable(x, name="X")
         Y2 = PS(X2, 2, color=True)
         y2 = sess.run(Y2, feed_dict={X2: x2})
-        print y2.shape
+        print(y2.shape)
     plt.imshow(y[0, :, :, 0], interpolation="none")
     plt.show()
