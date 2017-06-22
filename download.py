@@ -141,7 +141,7 @@ def download_mnist(dirpath):
     else:
         os.mkdir(data_dir)
     url_base = 'http://yann.lecun.com/exdb/mnist/' 
-    file_names = ['train-images-idx3-ubyte.gz','train-labels-idx1-ubyte.gz','t10k-images-idx3-ubyte.gz','t10k-labels-idx3-ubyte.gz']
+    file_names = ['train-images-idx3-ubyte.gz','train-labels-idx1-ubyte.gz','t10k-images-idx3-ubyte.gz','t10k-labels-idx1-ubyte.gz']
     for file_name in file_names:
         url = (url_base+file_name).format(**locals())
         print(url)
