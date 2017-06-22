@@ -9,9 +9,9 @@ def _phase_shift(I, r):
     X = tf.reshape(I, (bsize, a, b, r, r))
     X = tf.transpose(X, (0, 1, 2, 4, 3))  # bsize, a, b, 1, 1
     X = tf.split(X, a, 1)  # a, [bsize, b, r, r]
-    X = tf.concat(2, [tf.squeeze(x, axis=1) for x in X])  # bsize, b, a*r, r
+    X = tf.concat([tf.squeeze(x, axis=1) for x in X], 2)  # bsize, b, a*r, r
     X = tf.split(X, b, 1)  # b, [bsize, a*r, r]
-    X = tf.concat(2, [tf.squeeze(x, axis=1) for x in X])  # bsize, a*r, b*r
+    X = tf.concat([tf.squeeze(x, axis=1) for x in X], 2)  # bsize, a*r, b*r
     return tf.reshape(X, (bsize, a*r, b*r, 1))
 
 
