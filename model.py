@@ -74,11 +74,11 @@ class DCGAN(object):
 
         self.G = self.generator(self.inputs)
 
-        self.G_sum = tf.image_summary("G", self.G)
+        self.G_sum = tf.summary.image("G", self.G)
 
         self.g_loss = tf.reduce_mean(tf.square(self.images-self.G))
 
-        self.g_loss_sum = tf.scalar_summary("g_loss", self.g_loss)
+        self.g_loss_sum = tf.summary.scalar("g_loss", self.g_loss)
 
         t_vars = tf.trainable_variables()
 
@@ -96,8 +96,8 @@ class DCGAN(object):
         tf.initialize_all_variables().run()
 
         self.saver = tf.train.Saver()
-        self.g_sum = tf.merge_summary([self.G_sum, self.g_loss_sum])
-        self.writer = tf.train.SummaryWriter("./logs", self.sess.graph)
+        self.g_sum = tf.summary.merge([self.G_sum, self.g_loss_sum])
+        self.writer = tf.summary.FileWriter("./logs", self.sess.graph)
 
         sample_files = data[0:self.sample_size]
         sample = [get_image(sample_file, self.image_size, is_crop=self.is_crop) for sample_file in sample_files]
