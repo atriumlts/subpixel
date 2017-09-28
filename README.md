@@ -119,8 +119,8 @@ def _phase_shift(I, r):
     X = tf.split(1, a, X)  # a, [bsize, b, r, r]
     X = tf.concat(2, [tf.squeeze(x) for x in X])  # bsize, b, a*r, r
     X = tf.split(1, b, X)  # b, [bsize, a*r, r]
-    X = tf.concat(2, [tf.squeeze(x) for x in X])  #
-    bsize, a*r, b*r
+    X = tf.concat(2, [tf.squeeze(x) for x in X])  
+    # bsize, a*r, b*r
     return tf.reshape(X, (bsize, a*r, b*r, 1))
 
 def PS(X, r, color=False):
