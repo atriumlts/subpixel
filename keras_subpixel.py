@@ -1,3 +1,4 @@
+from __future__ import print_function
 from keras import backend as K
 from keras.layers import Conv2D
 
