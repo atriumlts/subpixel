@@ -131,7 +131,7 @@ if __name__ == "__main__":
 	model.fit(padded, HDimages, epochs=5, validation_split=.2)
 
 	result = model.predict(padded_test)
-	print "Upscaled from (%d, %d) to (%d, %d)"%(downscaled.shape[1], downscaled.shape[2], result.shape[1], result.shape[2])
+	print("Upscaled from (%d, %d) to (%d, %d)"%(downscaled.shape[1], downscaled.shape[2], result.shape[1], result.shape[2]))
 	
 	for i in range(100):
 		skimage.io.imsave("test_output/%04d_downscaled.jpeg"%(i), downscaled_test[i])
