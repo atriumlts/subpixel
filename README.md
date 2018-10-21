@@ -152,7 +152,7 @@ level one, using default Tensorflow OPs. But next we will rewrite everything
 with Keras so that an even larger community can use it. Plus, a cuda backend
 level implementation would be even more appreciated.
 
-But for now we want to encourage the community to experiment replacing deconv layers with subpixel operatinos everywhere. By everywhere we mean:
+But for now we want to encourage the community to experiment replacing deconv layers with subpixel operations everywhere. By everywhere we mean:
 
 * Conv-deconv autoencoders  
     Similar to super-resolution, include subpixel in other autoencoder implementations, replace deconv layers
